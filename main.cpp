@@ -4,8 +4,6 @@
 //
 //  Created by Naveen on 5/14/16.
 //  Copyright © 2016 KrishnaSwift. All rights reserved.
-//
-// This program was originally intended for it (M**nu K*ur), but honestly, i dont know. i liked it, IT got me in trouble, i mistakenly apologized, then resorted to hating her more than donald trump
 
 #include <iostream>
 #include <string>
@@ -32,7 +30,7 @@ node *createNode(string word)
     temp = new (node);
     if(temp == NULL)
     {
-        cout << "Can't allocate memory" << endl;
+        cout << "Memory is full. Cannot allocate it" << endl;
         return 0;
     }
     else
@@ -79,7 +77,7 @@ void printList()
     while(temp != NULL)
     {
         cout << temp->word << endl;
-        temp = temp->next;
+        temp = temp->next; // traverse linked list
     }
 }
 
