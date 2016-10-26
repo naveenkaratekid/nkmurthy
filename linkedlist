@@ -31,7 +31,7 @@ node *createNode(string word)
     temp = new (node);
     if(temp == NULL)
     {
-        cout << "Can't allocate memory" << endl;
+        cout << "Can't allocate memory. Not enough space" << endl;
         return 0;
     }
     else
@@ -72,7 +72,7 @@ void printList()
     node *temp;
     if(start == NULL)
     {
-        cout << "Empty List" << endl;
+        cout << "List is empty" << endl;
     }
     temp = start;
     while(temp != NULL)
