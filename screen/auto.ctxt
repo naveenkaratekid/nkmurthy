@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=
+comment0.target=auto()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ auto\r\n
+comment1.params=s1
+comment1.target=void\ create(javafx.scene.control.Slider)
+numComments=2

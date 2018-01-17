@@ -1,0 +1,368 @@
+import javafx.application.*;
+import javafx.beans.value.*;
+import javafx.collections.*;
+import javafx.event.*;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.beans.property.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import javafx.scene.media.*;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.Duration;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.*;
+
+/** Example of playing all audio files in a given directory. */
+public class AudioPlaylist1 extends Application 
+{
+  public static String TAG_COLUMN_NAME = "Tag";
+  public static String VALUE_COLUMN_NAME = "Value";
+  public static List<String> SUPPORTED_FILE_EXTENSIONS = Arrays.asList(".mp3");
+  public static int FILE_EXTENSION_LEN = 3;
+  private Duration totalTime;
+  private MediaPlayer player;
+  public Label currentlyPlaying = new Label();
+  public Label artist, title;
+  ProgressBar progress = new ProgressBar();
+  
+  private ChangeListener<Duration> progressChangeListener;
+  private MapChangeListener<String, Object> metadataChangeListener;
+  private SliderBar slider = new SliderBar();
+  
+  public void start(final Stage stage)
+  {
+    
+    stage.setTitle("Audio Test");
+    //createControls();
+    
+    List<String> params = getParameters().getRaw();
+    File dir = (params.size() > 0)? new File(params.get(0)): new File("D:\\Programming\\Java\\BlueJ\\screen\\music");
+    if (!dir.exists() || !dir.isDirectory()) 
+        {
+      System.out.println("Cannot find audio source");
+      Platform.exit();
+      return;
+    }
+
+    // create some media players.
+    List<MediaPlayer> players = new ArrayList<>();
+    for (String file : dir.list(new FilenameFilter() 
+    {
+      public boolean accept(File dir, String name) 
+      {
+        for (String ext: SUPPORTED_FILE_EXTENSIONS) 
+        {
+          if (name.endsWith(".mp3")) 
+          {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+    )
+    ) 
+    players.add(createPlayer("file:///" + (dir + "\\" + file).replace("\\", "/").replaceAll(" ", "%20")));
+    
+    if (players.isEmpty()) 
+    {
+      System.out.println("No audio found in " + dir);
+      Platform.exit();
+      return;
+    }    
+    
+    // create a view to show the mediaplayers.
+    MediaView mediaView = new MediaView(players.get(0));
+    
+    Image nextImage = new Image(getClass().getResourceAsStream("next.png"));
+    Button skip = new Button("Next", new ImageView(nextImage));
+    //
+ 
+    
+    Image playImage = new Image(getClass().getResourceAsStream("play.png"));
+    Button play = new Button("Play", new ImageView(playImage));
+    play.getStylesheets().add(this.getClass().getResource("buttonstyle.css").toExternalForm());
+    play.setMinWidth(150);
+    play.setMaxWidth(150);
+    
+    Image previousImage = new Image(getClass().getResourceAsStream("previous.png"));
+    Button previous = new Button("Previous", new ImageView(previousImage));
+    
+    //previous.setGraphic(new ImageView(previousImage));
+    
+    Image pauseImage = new Image(getClass().getResourceAsStream("pause.png"));
+    Button pause = new Button("Pause", new ImageView(pauseImage));
+
+    // play each audio file
+    for (int i = 0; i < players.size(); i++) 
+    {
+      MediaPlayer player = players.get(i);
+      MediaPlayer nextPlayer = players.get((i + 1) % players.size());
+      createControls(i);
+      player.setOnEndOfMedia(new Runnable() 
+      {
+        public void run() 
+        {
+          player.currentTimeProperty().removeListener(progressChangeListener);
+          player.getMedia().getMetadata().removeListener(metadataChangeListener);
+          player.stop();
+          mediaView.setMediaPlayer(nextPlayer);
+          nextPlayer.play();
+        }
+      }
+      );
+    }
+    
+    //skip a track.
+    skip.setOnAction(new EventHandler<ActionEvent>() 
+    {
+      public void handle(ActionEvent actionEvent) 
+      {
+        final MediaPlayer curPlayer = mediaView.getMediaPlayer();
+        curPlayer.currentTimeProperty().removeListener(progressChangeListener);
+        //curPlayer.getMedia().getMetadata().removeListener(metadataChangeListener);
+        curPlayer.stop();
+
+        MediaPlayer nextPlayer = players.get((players.indexOf(curPlayer) + 1) % players.size());
+        mediaView.setMediaPlayer(nextPlayer);
+        nextPlayer.play();
+      }
+    }
+    );
+    
+    // previous track.
+    previous.setOnAction(new EventHandler<ActionEvent>() 
+    {
+      public void handle(ActionEvent actionEvent) 
+      {
+        final MediaPlayer curPlayer = mediaView.getMediaPlayer();
+        curPlayer.currentTimeProperty().removeListener(progressChangeListener); 
+        //curPlayer.getMedia().getMetadata().removeListener(metadataChangeListener);
+        curPlayer.stop();
+        
+        MediaPlayer prevPlayer = players.get((players.indexOf(curPlayer) - 1) % players.size());
+        
+        if(players.indexOf(curPlayer) < 0)
+        {
+            players.get((players.indexOf(curPlayer) - 1) % players.size());
+        }
+        mediaView.setMediaPlayer(prevPlayer);
+        //prevPlayer.play();
+      }
+    }
+    );
+    
+
+    // Play or pause a track.
+    play.setOnAction(new EventHandler<ActionEvent>() 
+    {
+      public void handle(ActionEvent actionEvent) 
+      {
+        if ("Pause".equals(play.getText())) 
+        {
+          mediaView.getMediaPlayer().pause();
+          play.setText("Play");
+          play.setGraphic(new ImageView(playImage));
+        } 
+        else 
+        {
+          mediaView.getMediaPlayer().play();
+          play.setText("Pause");
+          play.setGraphic(new ImageView(pauseImage));
+        }
+      }
+    }
+    );
+
+
+    // display track information
+    mediaView.mediaPlayerProperty().addListener(new ChangeListener<MediaPlayer>() 
+    {
+      public void changed(ObservableValue<? extends MediaPlayer> observableValue, MediaPlayer oldPlayer, MediaPlayer newPlayer) 
+      {
+        setCurrentlyPlaying(newPlayer);
+      }
+    }
+    );
+    
+    slider.sliderValueProperty().addListener((ov) -> 
+        {
+            if (slider.isChangingValue()) 
+            {
+                if (null != player)
+                {    // multiply duration by percentage calculated by slider position
+                    player.seek(totalTime.multiply(slider.sliderValueProperty().getValue() / 100.0));
+                }
+                else
+                {
+                    slider.sliderValueProperty().setValue(0);
+                }
+            }
+        }
+        );
+    
+    
+    mediaView.setMediaPlayer(players.get(0)); // play first track
+    //mediaView.getMediaPlayer().play();
+    setCurrentlyPlaying(mediaView.getMediaPlayer());
+
+    
+    StackPane layout = new StackPane();
+    layout.setStyle("-fx-background-color: ghostwhite; -fx-font-size: 20; -fx-padding: 20; -fx-alignment: center;");
+
+    HBox progressReport = new HBox(10);
+    progressReport.setAlignment(Pos.CENTER);
+    progressReport.getChildren().setAll(previous, skip, play, progress, mediaView);
+
+    VBox content = new VBox(10);
+    content.getChildren().setAll(currentlyPlaying, progressReport);
+    layout.getChildren().addAll(slider);
+    layout.getChildren().addAll(content);
+    progress.setMaxWidth(Double.MAX_VALUE);
+    HBox.setHgrow(progress, Priority.ALWAYS);
+    HBox.setHgrow(slider, Priority.ALWAYS);
+    content.getChildren().addAll(artist);
+    Scene scene = new Scene(layout, 800, 500);
+    stage.setScene(scene);
+    stage.show();
+    
+  }
+  
+  /*private void createControls()
+  {
+      artist = new Label();
+      artist.setId("artist");
+      artist.setTranslateX(100);
+      artist.setTranslateY(200);
+      title = new Label();
+      title.setId("title");
+  }*/
+  
+  private void createControls(int i)
+  {
+      i = 0;
+      artist = new Label();
+      artist.setId("artist");
+      artist.setTranslateX(100);
+      artist.setTranslateY(200);
+      title = new Label();
+      title.setId("title");
+  }
+  
+  private class SliderBar extends StackPane 
+  {
+
+        private Slider slider = new Slider();
+
+        private ProgressBar progressBar = new ProgressBar();
+
+        public SliderBar() 
+        {
+            getChildren().addAll(progressBar, slider);
+            bindValues();
+        }
+        
+        private void bindValues()
+        {
+            progressBar.prefWidthProperty().bind(slider.widthProperty());
+            progressBar.progressProperty().bind(slider.valueProperty().divide(100));
+        }
+
+        public DoubleProperty sliderValueProperty() 
+        {
+            return slider.valueProperty();
+        }
+
+        public boolean isChangingValue() 
+        {
+            return slider.isValueChanging();
+        }
+    }
+  
+    
+  private void setCurrentlyPlaying(MediaPlayer newPlayer)
+  {
+    newPlayer.seek(Duration.ZERO);
+
+    progress.setProgress(0);
+    progressChangeListener = new ChangeListener<Duration>() 
+    {
+      public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) 
+      {
+        progress.setProgress(1.0 * newPlayer.getCurrentTime().toMillis() / newPlayer.getTotalDuration().toMillis());
+      }
+    };
+    newPlayer.currentTimeProperty().addListener(progressChangeListener);
+    String artist = (String) newPlayer.getMedia().getMetadata().get("artist");
+    
+    String source = newPlayer.getMedia().getSource();
+
+    source = source.substring(0, source.length() - FILE_EXTENSION_LEN);
+    source = source.substring(source.lastIndexOf("/") + 1).replaceAll("%20", " ");
+    currentlyPlaying.setText("Now Playing: " + source);
+    
+
+    
+  }
+  
+  private MediaPlayer createPlayer(String mediaSource) 
+  {
+    Media media = new Media(mediaSource);
+    player = new MediaPlayer(media);
+    
+    media.getMetadata().addListener(new MapChangeListener<String, Object>() 
+    {
+        
+        public void onChanged(Change<? extends String, ? extends Object> ch) 
+        {
+          if (ch.wasAdded()) 
+          {
+              handleMetadata(ch.getKey(), ch.getValueAdded());
+          }
+        }
+    }
+      );
+    
+    player.setOnError(new Runnable() 
+    {
+      public void run() 
+      {
+        System.out.println("Error " + player.getError());
+      }
+    }
+    );
+    
+    
+    return player;
+  }
+  
+  private void handleMetadata(String key, Object val) 
+  {
+    if (key.equals("artist")) 
+    {
+         artist.setText(val.toString());
+
+    } 
+    
+    if (key.equals("title")) 
+    {
+      title.setText(val.toString());
+    }
+    
+    /*if (key.equals("image")) 
+    {
+      albumCover.setImage((Image)value);
+    }*/
+  }
+  
+  public static void main(String[] args)
+  { 
+      launch(args); 
+  }
+
+}

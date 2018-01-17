@@ -1,0 +1,472 @@
+import javafx.application.*;
+import javafx.event.*;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import javafx.beans.value.*;
+import javafx.util.*;
+import javafx.scene.shape.*;
+import javafx.scene.paint.*;
+import javafx.scene.text.*;
+import javafx.animation.*;
+import javafx.scene.media.*;
+import javafx.beans.value.*;
+import javafx.collections.*;
+import javafx.event.*;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.beans.property.*;
+import javafx.scene.media.*;
+import javafx.scene.control.cell.*;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.*;
+/**
+ * Write a description of class equalizer here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class equalizer extends Application
+{
+    // instance variables - replace the example below with your own
+    Button equalizer = new Button("Sound\nSettings");
+    equalizer.setFont(new Font("Arial", 17.5));
+    equalizer.setMinWidth(110);
+    equalizer.setMaxWidth(110);
+    equalizer.setMinHeight(65);
+    equalizer.setMaxHeight(65);
+    equalizer.setTranslateX(750);
+    equalizer.setTranslateY(-4000);
+    equalizer1 eq = new equalizer1();
+    equalizer.setOnAction(new EventHandler<ActionEvent>()
+    {
+        public void handle(ActionEvent e)
+        {
+            Stage stage1 = new Stage();
+            stage1.setTitle("Audio & Equalizer Settings");
+                
+            // ------------------------------ Bass
+            Slider s = new Slider(0, 6, 0);
+            Label l = new Label("Bass");
+            l.setFont(new Font("Arial", 20));
+            l.setTranslateX(200);
+            l.setTranslateY(-300);
+            s.setMin(-6);
+            s.setMax(6);
+           
+            s.setMinorTickCount(0);
+            s.setMajorTickUnit(1);
+            s.setSnapToTicks(true);
+            s.setShowTickMarks(true);
+            s.setShowTickLabels(true);
+            
+            s.setLabelFormatter(new StringConverter<Double>()
+            {
+                public String toString(Double x)
+                {
+                    if(x == 0)
+                    {
+                        return "/\\";
+                    }
+                    return " ";
+                }
+    
+                public Double fromString(String s1)
+                {
+                    switch(s1)
+                    {
+                        case "/\\":
+                            return (double)0;
+                        default:
+                            return (double)0;
+                    }
+                }
+            }
+            );
+            
+            
+            s.setMaxWidth(250);
+            s.setMaxHeight(300);
+            s.setMinWidth(250);
+            s.setMinHeight(300);
+            //s.setOpacity(1);
+            s.setTranslateX(100); 
+            s.setTranslateY(-90);
+    
+            //s.getStylesheets().add(this.getClass().getResource("styleSeat.css").toExternalForm());
+            //s.setStyle("-fx-font: 20px \"Arial\"; -fx-padding: 5;");
+            
+            //------------------------------ Treble
+            Slider s1 = new Slider(0, 6, 0);
+            Label l1 = new Label("Treble");
+            l1.setFont(new Font("Arial", 20));
+            l1.setTranslateX(197);
+            l1.setTranslateY(-960);
+            s1.setMin(-6);
+            s1.setMax(6);
+           
+            s1.setMinorTickCount(0);
+            s1.setMajorTickUnit(1);
+            s1.setSnapToTicks(true);
+            s1.setShowTickMarks(true);
+            s1.setShowTickLabels(true);
+            
+            s1.setLabelFormatter(new StringConverter<Double>()
+            {
+                public String toString(Double x)
+                {
+                    if(x == 0)
+                    {
+                        return "/\\";
+                    }
+                    return " ";
+                }
+    
+                public Double fromString(String s1)
+                {
+                    switch(s1)
+                    {
+                        case "/\\":
+                            return (double)0;
+                        default:
+                            return (double)0;
+                    }
+                }
+            }
+            );
+            
+            s1.setMaxWidth(250);
+            s1.setMaxHeight(300);
+            s1.setMinWidth(250);
+            s1.setMinHeight(300);
+            //s.setOpacity(1);
+            s1.setTranslateX(100); 
+            s1.setTranslateY(-750);
+    
+            Button b1 = new Button("+");
+            b1.setMinWidth(25);
+            b1.setMinHeight(25);
+            b1.setMaxWidth(25);
+            b1.setMaxHeight(25);
+            Button b2 = new Button("-");
+            b2.setMinWidth(25);
+            b2.setMinHeight(25);
+            b2.setMaxWidth(25);
+            b2.setMaxHeight(25);
+            
+            b1.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s.getValue();
+                    x++;
+                    s.setValue(x);
+                }
+            }
+            );
+            
+            b2.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s.getValue();
+                    x--;
+                    s.setValue(x);
+                }
+            }
+            );
+            b1.setTranslateX(355);
+            b1.setTranslateY(-310);
+            
+            b2.setTranslateX(70);
+            b2.setTranslateY(-345);
+            
+            
+            // ------------------------------ Fade ---------------------------------------
+            Slider s11 = new Slider(0, 6, 0);
+            Label l11 = new Label("Fade");
+            l11.setFont(new Font("Arial", 20));
+            l11.setTranslateX(205);
+            l11.setTranslateY(-1325);
+            s11.setMin(-6);
+            s11.setMax(6);
+           
+            s11.setMinorTickCount(0);
+            s11.setMajorTickUnit(1);
+            s11.setSnapToTicks(true);
+            s11.setShowTickMarks(true);
+            s11.setShowTickLabels(true);
+            
+            s11.setLabelFormatter(new StringConverter<Double>()
+            {
+                public String toString(Double x)
+                {
+                    if(x == 0)
+                    {
+                        return "/\\";
+                    }
+                    return " ";
+                }
+    
+                public Double fromString(String s1)
+                {
+                    switch(s1)
+                    {
+                        case "/\\":
+                            return (double)0;
+                        default:
+                            return (double)0;
+                    }
+                }
+            }
+            );
+            
+            
+            s11.setMaxWidth(250);
+            s11.setMaxHeight(300);
+            s11.setMinWidth(250);
+            s11.setMinHeight(300);
+            //s.setOpacity(1);
+            s11.setTranslateX(100); 
+            s11.setTranslateY(-1115);
+    
+            Button b11 = new Button("+");
+            b11.setMinWidth(25);
+            b11.setMinHeight(25);
+            b11.setMaxWidth(25);
+            b11.setMaxHeight(25);
+            Button b21 = new Button("-");
+            b21.setMinWidth(25);
+            b21.setMinHeight(25);
+            b21.setMaxWidth(25);
+            b21.setMaxHeight(25);
+            b11.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s11.getValue();
+                    x++;
+                    s11.setValue(x);
+                }
+            }
+            );
+            
+            b21.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s11.getValue();
+                    x--;
+                    s11.setValue(x);
+                }
+            }
+            );
+            b11.setTranslateX(355);
+            b11.setTranslateY(-1335);
+            
+            b21.setTranslateX(70);
+            b21.setTranslateY(-1370);
+            
+            
+            Button forward = new Button("Front");
+            Button rear = new Button("Rear");
+            Button left = new Button("Left");
+            Button right = new Button("Right");
+            
+            ImageView iv1 = new ImageView();
+            Image line1 = new Image("redLine.png");
+            iv1.setImage(line1);
+            
+            ImageView iv2 = new ImageView();
+            iv2.setImage(line1);
+            iv2.setRotate(iv2.getRotate() + 90);
+            
+            ImageView iv3 = new ImageView();
+            iv3.setImage(new Image("surround.png"));
+            
+            Button def = new Button("Default");
+            def.setMinWidth(75);
+            def.setMinHeight(25);
+            def.setMaxWidth(75);
+            def.setMaxHeight(25);
+            
+            def.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    iv1.setTranslateX(500);
+                    iv1.setTranslateY(-439);
+            
+                    iv2.setTranslateX(500);
+                    iv2.setTranslateY(-451);
+                }
+            }
+            );
+            
+            def.setTranslateX(600);
+            def.setTranslateY(-850);
+            iv1.setTranslateX(500);
+            iv1.setTranslateY(-439);
+    
+            iv2.setTranslateX(500);
+            iv2.setTranslateY(-451); 
+            
+            iv3.setTranslateX(500);
+            iv3.setTranslateY(-350);
+            
+            
+            forward.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double y = iv1.getTranslateY();
+                    //y--;
+                    if(iv1.getTranslateY() <= -514)
+                    {
+                       iv1.setTranslateY(-514);
+                       System.out.println("Line reached max -514");
+                       
+                    }
+                    else
+                    {
+                        y--;
+                        iv1.setTranslateY(y);
+                    }
+
+                }
+            }
+            );
+            forward.setTranslateX(555);
+            forward.setTranslateY(-575);
+            
+            rear.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double y = iv1.getTranslateY();
+                    y++;
+                    if(iv1.getTranslateY() >= -363)
+                    {
+                       iv1.setTranslateY(-363);
+                       System.out.println("Line reached min -363");
+                    }
+                    else
+                    {
+                        y++;
+                        iv1.setTranslateY(y);
+                    }
+                    
+                }
+            }
+            );
+            rear.setTranslateX(555);
+            rear.setTranslateY(-410);
+            
+            left.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = iv2.getTranslateX();
+
+                    if(iv2.getTranslateX() <= 425)
+                    {
+                        iv2.setTranslateX(425);
+                        System.out.println("Line reached min -425");
+                    }
+                    else
+                    {
+                        x--;
+                        iv2.setTranslateX(x);
+                        
+                    }
+                    
+                }
+            }
+            );
+            left.setTranslateX(450);
+            left.setTranslateY(-545);
+            
+            right.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = iv2.getTranslateX();
+
+                    if(iv2.getTranslateX() >= 576)
+                    {
+                        iv2.setTranslateX(576);
+                        System.out.println("Line reached min -576");
+                    }
+                    else
+                    {
+                        x++;
+                        iv2.setTranslateX(x);
+                    }
+                    //System.out.println(" IV2 X: " + iv2.getTranslateX() + " IV2 Y: " + iv2.getTranslateY());
+                }
+            }
+            );
+            right.setTranslateX(665);
+            right.setTranslateY(-580);
+            
+            
+            /////////////////////////////////////
+            Button b111 = new Button("+");
+            b111.setMinWidth(25);
+            b111.setMinHeight(25);
+            b111.setMaxWidth(25);
+            b111.setMaxHeight(25);
+            Button b211 = new Button("-");
+            b211.setMinWidth(25);
+            b211.setMinHeight(25);
+            b211.setMaxWidth(25);
+            b211.setMaxHeight(25);
+            
+            b111.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s1.getValue();
+                    x++;
+                    s1.setValue(x);
+                }
+            }
+            );
+            
+            b211.setOnAction(new EventHandler<ActionEvent>()
+            {
+                public void handle(ActionEvent e)
+                {
+                    double x = s1.getValue();
+                    x--;
+                    s1.setValue(x);
+                }
+            }
+            );
+            b111.setTranslateX(355);
+            b111.setTranslateY(-970);
+            
+            b211.setTranslateX(70);
+            b211.setTranslateY(-1005);
+            
+            
+            
+            
+            VBox root = new VBox(10);
+            root.setMaxWidth(750);
+            root.setMinWidth(750);
+            root.setMinHeight(450);
+            //root.setMaxWidth(500);
+            root.setMaxHeight(450);
+            root.getChildren().addAll(s, l, b1, b2, iv3, iv1, iv2, forward, rear, left, right, s1, l1, b111, b211, def, s11, l11, b11, b21);
+            Scene scene = new Scene(root);
+            stage1.setScene(scene);
+            stage1.show();
+        }
+    }
+        );
+}
