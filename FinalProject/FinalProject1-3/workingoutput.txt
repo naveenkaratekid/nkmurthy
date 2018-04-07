@@ -1,0 +1,576 @@
+Enter your first name: 
+nk
+Name: nk
+Email: 
+nk@cog.edu
+Email: nk@cog.edu
+Home address: 
+535 Main St
+Address: 535 Main St
+Phone Number: 
+533-5555
+Number: 533-5555
+
+Welcome nk!
+We are your #1 source for creating a custom car tailored to your needs.
+
+Please enter your style of car you would prefer (Sub Compact, Compact, Midsize, Fullsize, Compact SUV, Midsize SUV, Fullsize SUV, Pickup Truck, Convertible): 
+Pickup Truck
+Your style: Pickup Truck
+Enter what type of power you would like (Electric, Gas): Gas
+Choose from these engines: (V4, V6, V8, V12): 
+V8
+Do you want to add an electric battery and convert this vehicle into a hybrid?
+yes
+Your vehicle is now a hybrid!
+What kind of transmission would you like in your car? (CVT (continuously variable), automatic, manual)
+CVT
+orderDate is: 0x100400000
+CREATE TABLE customer (customerName VARCHAR(100), customerAddress VARCHAR(255), customerEmail VARCHAR(200), customerPhoneNumber VARCHAR(11)); table customer already exists
+CREATE TABLE customerOrder (customerName VARCHAR(100), orderId VARCHAR(255), confirmationNumber VARCHAR(200), orderDate TEXT(20), status VARCHAR(200)); table customerOrder already exists
+12- 4-2016 08:09PM
+sselect max(cast(orderid as integer)) from customerorder; near "sselect": syntax error
+CREATE TABLE customerOrder (customerName VARCHAR(100), orderId VARCHAR(255), confirmationNumber VARCHAR(200), orderDate TEXT(20), status VARCHAR(200)); table customerOrder already exists
+CREATE TABLE customerCarOrderInfo (orderId VARCHAR(100), styleOfCar VARCHAR(200), powerTrain VARCHAR(200), engine VARCHAR(300), transmission VARCHAR(200)); table customerCarOrderInfo already exists
+What material would you like for your exterior (Bulletproof Steel, Steel, Iron, Bulletproof Iron)?
+Steel
+Your exterior material: Steel
+What kind of wheels would you like (Steel Wheels, (18, 20, 22, 24) inch Alloy Wheels?
+24
+Your wheel choice: 24 inch Alloy Wheels
+What kind of brakes would you like? (Drum, (10, 15, 20) inch Solid Disc)
+20
+Brakes: 20 inch Solid Disc Brakes
+How many seats would you like in your Pickup Truck?
+6
+Your number of seats: 6 seats
+What kind of seats would you like? (Leather, Cloth)
+Leather
+
+Your seat material: Leather
+Choose an interior cabin material (Real Rose Wood, Titanium, Leather, Plastic, Aluminum): 
+Real Rose Wood
+Your interior cabin material: Real Rose Wood
+CREATE TABLE customerMaterialSpecs (orderId VARCHAR(100), itemName VARCHAR(100), quantity VARCHAR(200)); table customerMaterialSpecs already exists
+Processing Purchase Orders......
+Real Rose Wood Trim is low on stock. Reordering
+Order is received
+Sleeping for 15 seconds
+Processing Purchase Orders......
+Real Rose Wood Trim is low on stock. Reordering
+Order is in Transit
+Sleeping for 15 seconds
+Processing Purchase Orders......
+Real Rose Wood Trim is low on stock. Reordering
+Order is delivered
+Sleeping for 15 seconds
+Processing Purchase Orders......
+Real Rose Wood Trim is low on stock. Reordering
+Order is closed
+Sleeping for 15 seconds
+Processing Purchase Orders......
+No open orders to process
+Sleeping for 30 minutes
+exiting loop from process purchase order
+Processing customer's order
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+creating purchase order
+12- 4-2016 08:12PM
+CREATE TABLE purchaseOrder (orderId VARCHAR(100), itemName VARCHAR(100), vendorName VARCHAR(100), quantity VARCHAR(255), orderDate TEXT(100), status VARCHAR(100)); table purchaseOrder already exists
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is in construction
+Processing customer's order
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is almost finished
+Processing customer's order
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Order 0 is ready for pickup.
+Processing customer's order
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Notifying nk that order 0 is ready for pickup.
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Items chosen and quantity needed for order 0: 
+15 inch Solid Disc Brakes 4
+18 inch Alloy Wheels 4
+20 inch Alloy Wheels 4
+20 inch Solid Disc Brakes 4
+24 inch Alloy Wheels 4
+6 Speed Manual Transmission 1
+Bulletproof Iron Exterior 1
+Bulletproof Steel Exterior 1
+CVT Transmission 1
+Electric Battery 1
+Iron Exterior 1
+Leather Seats 8
+Real Rose Wood Trim 1
+Steel Exterior 1
+V12 Gas 1
+V8 Gas 1
+Order 0 is proceeding as planned. No need to notify customer
+Payment has been received. Order 0 is closed
+Processing customer's order
+No open customer orders to process
+Sleeping for 30 minutes
+Program ended with exit code: 0
