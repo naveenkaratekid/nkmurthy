@@ -1,0 +1,167 @@
+//
+//  main.cpp
+//  linkedlist2
+//
+//  Created by Naveen on 5/14/16.
+//  Copyright © 2016 KrishnaSwift. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <fstream>
+
+using namespace std;
+
+struct node {
+    string word;
+    struct node *next;
+    
+}*start;
+typedef struct node node;
+
+node *createNode(string);
+void insertNameAtFront();
+void insertNameAtEnd();
+void printList();
+
+node *createNode(string word)
+{
+    node *temp;
+    temp = new (node);
+    if(temp == NULL)
+    {
+        cout << "Can't allocate memory. Not enough space" << endl;
+        return 0;
+    }
+    else
+    {
+        temp->word = word;
+        temp->next = NULL;
+    }
+    return temp;
+}
+
+void insertNameAtFront()
+{
+    string word;
+    node *temp, *a;
+    temp = createNode(word);
+    if(start == NULL)
+    {
+        start = temp;
+        start->next = NULL;
+    }
+    else
+    {
+        a = start;
+        start = temp;
+        start->next = a;
+    }
+}
+void insertNameAtEnd()
+{
+    string word;
+    node *temp, *b;
+    temp = createNode(word);
+    b = start;
+}
+
+void printList()
+{
+    node *temp;
+    if(start == NULL)
+    {
+        cout << "List is empty" << endl;
+    }
+    temp = start;
+    while(temp != NULL)
+    {
+        cout << temp->word << endl;
+        temp = temp->next;
+    }
+}
+
+void planADate()
+{
+    string restaurant, activity, movie;
+    map<string, string> address;
+    fstream fs;
+    string yelpLink1 = "https://www.yelp.com/search?find_desc=", yelpLink2 = "&src=opensearch&find_loc=San+Jose%2C+CA",yelpLinkCombined;
+    cout << "How should we plan our first date?" << endl;
+    cout << "1.) Going to a restaurant" << endl << "2.) See a movie" << endl << "3.) Anything you can think of" << endl;
+    string inpString;
+    
+    int input;
+    cin >> input;
+    switch(input)
+    {
+        case 1:
+            inpString = restaurant;
+            cout << "What restaurant should we go to?" << endl;
+            cin >> restaurant;
+            yelpLinkCombined = yelpLink1 + restaurant + yelpLink2;
+            cout << yelpLinkCombined << endl;
+            break;
+        case 2:
+            inpString = movie;
+            cout << "Which movie do you want to see?" << endl;
+            cin >> movie;
+            yelpLinkCombined = yelpLink1 + movie + yelpLink2;
+            fs.open(yelpLinkCombined);
+            break;
+        case 3:
+            inpString = activity;
+            cout << "What do you think we should do?" << endl;
+            cin >> activity;
+            cout << activity << endl;
+            cout << "Sure" << endl;
+            break;
+        default:
+            cout << "Invalid input" << endl;
+            break;
+    }
+}
+
+int main(void)
+{
+    string name, word;
+    int num;
+    cout << "Enter your crush's name: " << endl;
+    cin >> name;
+    cout << "Choose 1 or 2" << endl;
+    cin >> num;
+    switch(num)
+    
+    {
+        case 1:
+            insertNameAtFront();
+            cout << name << ", I really like you. Will you go out with me?" << endl;
+            cin >> word;
+            if(word == "yes" || word == "sure")
+            {
+                planADate();
+            }
+            else
+            {
+                exit(-1);
+            }
+            break;
+        case 2:
+            insertNameAtEnd();
+            cout << "I really like you. Will you go out with me, " << name << "?" << endl;
+            cin >> word;
+            if(word == "yes" || word == "sure")
+            {
+                planADate();
+            }
+            else
+            {
+                exit(-1);
+            }
+            break;
+        default:
+            cout << "Invalid" << endl;
+    }
+    return 0;
+}
